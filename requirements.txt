@@ -1,0 +1,9 @@
+certifi==2017.4.17
+chardet==3.0.3
+-e git://github.com/django/django.git@aab5deb53eccc2ac1c36106c91864b0aaf48f5a8#egg=Django
+idna==2.5
+lxml==3.7.3
+mysqlclient==1.3.10
+pytz==2017.2
+requests==2.17.3
+urllib3==1.21.1
