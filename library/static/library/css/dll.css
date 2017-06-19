@@ -1,0 +1,23 @@
+body {
+	padding-top: 50px;
+}
+nav.navbar {
+	height: 77px;
+	background-color: #005cb9;
+}
+div.jumbotron {
+	background-color: #fff;
+  padding: 4rem 1rem;
+}
+div.container {
+  width: 100%;
+}
+div#navbar {
+	padding-top: 23px;
+}
+div#tei {
+	padding-top: 2rem;
+}
+.btn {
+	border-color: silver;
+}

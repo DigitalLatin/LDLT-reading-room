@@ -1,0 +1,11 @@
+{
+  "debug": true,
+  "languages":[
+    {"currentlang":"lat"},
+    {"defaultlang":"lat"},
+    {"installedlangs":[
+      {"lang":"latin", "code":"lat", "mouseaction":"onclick"}
+    ]}
+  ]
+
+}

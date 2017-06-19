@@ -1,0 +1,8 @@
+{% extends "library/base.html" %}
+
+{% block content %}
+<h1>Editions</h1>
+{% for edition in editions %}
+<p><a href="texts/{{edition.identifier}}/front">{{edition.title}}</a>: {{edition.description}}</p>
+{% endfor %}
+{% endblock %}
