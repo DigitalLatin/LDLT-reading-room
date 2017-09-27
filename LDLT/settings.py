@@ -82,6 +82,7 @@ DATABASES = {
             'passwd': 'dll_admin',
             'db': 'dll',
             'use_unicode': 'true',
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
         },
 
 
