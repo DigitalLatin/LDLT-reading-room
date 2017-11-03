@@ -89,9 +89,12 @@
     </div>
     {% endif %}
   </div>
-  <div>{% if prev %}<a href="{{prev.xml_id}}" class="btn btn-secondary">previous</a> {% endif %}{% if next %}<a href="{{next.xml_id}}" class="btn btn-secondary">next</a> {% endif %}{% if part != 'front' %}<a href="front" class="btn btn-secondary">introduction</a>{% endif %}</div>
-  {% autoescape off %}{{ text }}{% endautoescape %}
-  <div>{% if prev %}<a href="{{prev.xml_id}}" class="btn btn-secondary">previous</a> {% endif %}{% if next %}<a href="{{next.xml_id}}" class="btn btn-secondary">next</a> {% endif %}{% if part != 'front' %}<a href="front" class="btn btn-secondary">introduction</a>{% endif %}</div>
+  <div>{% if prev %}<a href="{{prev}}" class="btn btn-secondary">previous</a> {% endif %}{% if next %}<a href="{{next}}" class="btn btn-secondary">next</a> {% endif %}{% if part != 'front' %}<a href="titlepage" class="btn btn-secondary">introduction</a>{% endif %}</div>
+  <div id="tei">{% autoescape off %}{{ text }}{% endautoescape %}</div>
+  <div style="display:none">
+    {% autoescape off %}{{ bibliography }}{% endautoescape %}
+  </div>
+  <div>{% if prev %}<a href="{{prev}}" class="btn btn-secondary">previous</a> {% endif %}{% if next %}<a href="{{next}}" class="btn btn-secondary">next</a> {% endif %}{% if part != 'front' %}<a href="titlepage" class="btn btn-secondary">introduction</a>{% endif %}</div>
 </div>
 <script type="text/javascript">
   c.els = els;

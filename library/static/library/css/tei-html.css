@@ -108,6 +108,9 @@ div#editing button {
 
 
 /* Apparatus */
+div.apparatus {
+  width: 80%;
+}
 div.apparatus tei-app {
   display: inline;
 }
@@ -891,13 +894,12 @@ tei-handNotes {
 tei-handShift {
   /* Empty Rule Set */
 }
-/* Need head with TEI parent to distinguish from HTML head */
-tei-TEI tei-head {
+tei-head {
   display: block;
   font-family: Arvo, sans-serif;
   font-weight: normal;
 }
-tei-body > tei-head {
+div > tei-head {
   font-size: 180%;
   text-indent: -0.5em;
 }

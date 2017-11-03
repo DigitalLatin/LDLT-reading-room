@@ -17,6 +17,7 @@ div#navbar {
 }
 div#tei {
 	padding-top: 2rem;
+	width: 82%;
 }
 .btn {
 	border-color: silver;

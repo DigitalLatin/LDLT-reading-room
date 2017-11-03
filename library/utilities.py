@@ -1,5 +1,4 @@
-from lxml import etree
-from library.models import Edition, Part
+from library.models import Edition
 import re
 import requests
 import os
@@ -9,31 +8,27 @@ DIR = os.path.dirname(os.path.abspath(__file__))
 def process_edition(edition):
     r = requests.get(edition.source)
     if r.status_code == requests.codes.ok:
-        xml = etree.XML(r.content)
-        transform = etree.XSLT(etree.parse(os.path.join(DIR, "xslt", "make-CETEIcean.xsl")))
-        edpath = os.path.join(DIR, "data", re.sub(r"[^a-zA-Z0-9.-]", "_", edition.identifier))
+        filename = re.sub(r"[^a-zA-Z0-9.-]", "_", edition.identifier)
+        edpath = os.path.join(DIR, "data", edition.org)
         if not os.path.exists(edpath):
             os.makedirs(edpath)
-        if edition.sections:
-            ids = edition.sections.split(",")
-            i = 0
-            for id in ids:
-                value = etree.XSLT.strparam(id)
-                result = transform(xml, section=value)
-                f = open(edpath + "/" + id, "w")
-                f.write(str(result))
-                f.close()
-                part = Part(parent=edition, xml_id=id, label=xml.xpath("id('%s')/@n" % id)[0], order=i)
-                part.save()
-                i = i + 1
-        # Do the whole file as well
-        result = transform(xml)
-        f = open(os.path.join(edpath, "index"), "w")
-        f.write(str(result))
-        f.close
         # Copy the source
-        f = open(os.path.join(edpath, "source"), "w")
+        path = os.path.join(edpath, filename)
+        f = open(path, "w")
         f.write(r.text)
         f.close
+        # Just load the file into exist. Queries will give us TOC, position metadata, etc.
+        # URL like http://localhost:8088/rest/db/LDLT/SCS/urn_cts_latinLit_phi0830.phi001.dll_1.xml
+        url = "http://localhost:8080/exist/rest/db/LDLT/%s/%s.xml" % (edition.org, filename)
+        r = requests.put(url, data=open(path).read().encode('utf-8'), auth=('admin',''))
+        if r.status_code == requests.codes.created:
+            url = "http://localhost:8080/exist/apps/CTXQ/toc/LDLT/%s/d/%s/" % (edition.org, filename)
+            print(url)
+            toc = requests.get(url)
+            print(toc)
+            edition.sections = toc.text
+            edition.save()
+        else:
+            raise ValueError("Could not save source to the database. Status code: %s." % (r.status_code))
     else:
         raise ValueError("Could not retrieve source from %s" % edition.source)
