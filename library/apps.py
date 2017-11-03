@@ -6,6 +6,6 @@ class LibraryConfig(AppConfig):
     def ready(self):
         import library.signals
         import requests
-        r = requests.get("http://localhost:8080/exist/rest/")
+        r = requests.get("http://localhost:8088/exist/rest/")
         if r.status_code != requests.codes.ok:
             raise SystemExit("eXist database not available.")

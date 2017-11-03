@@ -38,9 +38,9 @@ def edition(request, id, part=None):
         else:
             part = 'titlepage'
             next = sections["item"][1]["id"]
-        url = "http://localhost:8080/exist/apps/CTXQ/ce/LDLT/%s/d/%s/i/%s" % (edition.org, doc, part)
+        url = "http://localhost:8088/exist/apps/CTXQ/ce/LDLT/%s/d/%s/i/%s" % (edition.org, doc, part)
         text = requests.get(url).text
-        url = "http://localhost:8080/exist/apps/CTXQ/ce/LDLT/%s/d/%s/i/bibliography" % (edition.org, doc)
+        url = "http://localhost:8088/exist/apps/CTXQ/ce/LDLT/%s/d/%s/i/bibliography" % (edition.org, doc)
         bibliography = requests.get(url).text
 
     except Edition.DoesNotExist:

@@ -19,10 +19,10 @@ def process_edition(edition):
         f.close
         # Just load the file into exist. Queries will give us TOC, position metadata, etc.
         # URL like http://localhost:8088/rest/db/LDLT/SCS/urn_cts_latinLit_phi0830.phi001.dll_1.xml
-        url = "http://localhost:8080/exist/rest/db/LDLT/%s/%s.xml" % (edition.org, filename)
+        url = "http://localhost:8088/exist/rest/db/LDLT/%s/%s.xml" % (edition.org, filename)
         r = requests.put(url, data=open(path).read().encode('utf-8'), auth=('admin',''))
         if r.status_code == requests.codes.created:
-            url = "http://localhost:8080/exist/apps/CTXQ/toc/LDLT/%s/d/%s/" % (edition.org, filename)
+            url = "http://localhost:8088/exist/apps/CTXQ/toc/LDLT/%s/d/%s/" % (edition.org, filename)
             print(url)
             toc = requests.get(url)
             print(toc)
