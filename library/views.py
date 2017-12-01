@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.shortcuts import redirect
 from django.http import HttpResponse
 from .models import Edition
 import json
@@ -16,12 +17,10 @@ def index(request):
 
 def edition(request, id, part=None):
     try:
-        print(id)
         edition = Edition.objects.get(identifier=id)
         # URL like /CTXQ/ce/<collection>/d/<document_id>/i/<node_id>
         doc = re.sub(r"[^a-zA-Z0-9.-]", "_", edition.identifier)
         sections = json.loads(edition.sections)
-        print(sections)
         found = prev = next = None
         if part:
             i = 0
@@ -38,11 +37,14 @@ def edition(request, id, part=None):
         else:
             part = 'titlepage'
             next = sections["item"][1]["id"]
-        url = "http://localhost:8088/exist/apps/CTXQ/ce/LDLT/%s/d/%s/i/%s" % (edition.org, doc, part)
-        text = requests.get(url).text
-        url = "http://localhost:8088/exist/apps/CTXQ/ce/LDLT/%s/d/%s/i/bibliography" % (edition.org, doc)
-        bibliography = requests.get(url).text
+        with open(edition.file(part)) as f:
+            text = f.read()
+        with open(edition.file('bibliography')) as f:
+            bibliography = f.read()
 
     except Edition.DoesNotExist:
         raise Http404("Edition %s not found" % id)
     return render(request, 'library/edition.html', {'edition': edition, 'part': part, 'text': text, 'bibliography': bibliography, 'prev': prev, 'next': next})
+
+def add_slash(request):
+    return redirect("%s/" % request.path)

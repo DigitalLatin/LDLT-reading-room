@@ -1,4 +1,6 @@
 from django.db import models
+import re
+import os
 
 # Create your models here.
 class Edition(models.Model):
@@ -22,3 +24,7 @@ class Edition(models.Model):
 
     def __str__(self):
         return self.title
+
+    def file(self, section):
+        DIR = os.path.dirname(os.path.abspath(__file__))
+        return os.path.join(DIR, "data", self.org, re.sub(r"[^a-zA-Z0-9.-]", "_", self.identifier), section)

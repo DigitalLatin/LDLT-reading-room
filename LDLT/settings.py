@@ -78,16 +78,12 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'OPTIONS': {
-            'user': 'dll_admin',
-            'passwd': 'dll_admin',
+            'user': 'admin',
+            'passwd': 'admin',
             'db': 'dll',
             'use_unicode': 'true',
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
         },
-
-
-
-
     }
 }
 
@@ -129,3 +125,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+
+EXIST_URL = 'http://localhost:8088/exist/'
+
+try:
+    from LDLT.local_settings import *
+except ImportError:
+    pass
