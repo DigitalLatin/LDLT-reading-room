@@ -37,9 +37,9 @@ def edition(request, id, part=None):
         else:
             part = 'titlepage'
             next = sections["item"][1]["id"]
-        with open(edition.file(part)) as f:
+        with open(edition.file(part), encoding="utf-8") as f:
             text = f.read()
-        with open(edition.file('bibliography')) as f:
+        with open(edition.file('bibliography'), encoding="utf-8") as f:
             bibliography = f.read()
 
     except Edition.DoesNotExist:

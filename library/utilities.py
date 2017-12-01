@@ -16,9 +16,8 @@ def process_edition(edition):
             os.makedirs(edpath)
         # Copy the source
         path = os.path.join(edpath, "%s.xml" % filename)
-        f = open(path, 'w')
-        f.write(r.text)
-        f.close
+        with open(path, 'w', encoding="utf-8") as f:
+            f.write(r.text)
         # Just load the file into exist. Queries will give us TOC, position metadata, etc.
         # URL like http://localhost:8088/rest/db/LDLT/SCS/urn_cts_latinLit_phi0830.phi001.dll_1.xml
         url = "%srest/db/LDLT/%s/%s.xml" % (settings.EXIST_URL, edition.org, filename)
@@ -30,7 +29,7 @@ def process_edition(edition):
             edition.save()
             toc = json.loads(toc.text)
             for part in toc['item']:
-                with open(edition.file(part['id']), 'w') as f:
+                with open(edition.file(part['id']), 'w', encoding="utf-8") as f:
                     r = requests.get("%sapps/CTXQ/ce/LDLT/%s/d/%s/i/%s" % (settings.EXIST_URL, edition.org, filename, part['id']))
                     f.write(r.text)
         else:
