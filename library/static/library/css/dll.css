@@ -23,6 +23,11 @@ div#toc {
 	position: fixed;
 	top: 15em;
 	right: 1em;
+	width: 250px;
+}
+div#toc tei-head {
+	font-size: larger;
+	font-weight: bold;
 }
 .btn {
 	border-color: silver;

@@ -15,7 +15,6 @@
 <script src="https://cdn.jsdelivr.net/npm/alpheios-embedded/dist/alpheios-embedded.min.js"></script>
 <script type="text/javascript">
   var c = new CETEI();
-  c.shadowCSS = "{% static "library/css/tei-html.css" %}";
   var app = new appcrit(c);
   c.addBehaviors({"tei":{
     // Overrides the default ptr behavior, displaying a short link
@@ -113,8 +112,8 @@
 </div>
 <script type="text/javascript">
   c.els = els;
-  if (document.registerElement) {
-    c.registerAll(c.els);
+  if (window.customElements) {
+    c.define(c.els);
   } else {
     c.fallback(c.els);
   }
