@@ -19,6 +19,11 @@ div#tei {
 	padding-top: 2rem;
 	width: 82%;
 }
+div#toc {
+	position: fixed;
+	top: 15em;
+	right: 1em;
+}
 .btn {
 	border-color: silver;
 }

@@ -4,28 +4,39 @@
 {% block css %}
 <link rel="stylesheet" href="{% static "library/css/tei-html.css" %}">
 <link rel="stylesheet" href="{% static "library/js/jquery-ui-1.11.4.custom/jquery-ui.css" %}">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alpheios-embedded/dist/style/style.min.css"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alpheios-embedded/dist/style/style-embedded.min.css"/>
 {% endblock %}
 {% block header_js %}
 <script type="text/javascript" src="{% static "library/js/CETEI.js" %}"></script>
 <script type="text/javascript" src="{% static "library/js/jquery/jquery-1.11.3.js" %}"></script>
 <script type="text/javascript" src="{% static "library/js/jquery-ui-1.11.4.custom/jquery-ui.js" %}"></script>
 <script type="text/javascript" src="{% static "library/js/appcrit.js" %}"></script>
-<script src="{% static "library/js/alpheios-morphlib.js" %}" charset="utf-8"></script>
+<script src="https://cdn.jsdelivr.net/npm/alpheios-embedded/dist/alpheios-embedded.min.js"></script>
 <script type="text/javascript">
   var c = new CETEI();
   c.shadowCSS = "{% static "library/css/tei-html.css" %}";
   var app = new appcrit(c);
-  c.addBehaviors({"handlers":{
+  c.addBehaviors({"tei":{
     // Overrides the default ptr behavior, displaying a short link
     "ptr": function(elt) {
-        var link = document.createElement("a");
+        let link = document.createElement("a");
         link.innerHTML = elt.getAttribute("target").replace(/https?:\/\/([^\/]+)\/.*/, "$1");
         link.href = elt.getAttribute("target");
         return link;
     },
+    "ref": [
+      ["tei-div[subtype=toc] tei-ref", function(elt) {
+        let link = document.createElement("a");
+        link.setAttribute("href", elt.getAttribute("target").substr(1));
+        link.innerHTML = elt.innerHTML;
+        return link;
+      }],
+      ["*", ["<a href=\"$rw@target\">","</a>"]]
+    ],
     "gap": ["<span>*</span>"],
     "witDetail": function(elt) {
-      var content = document.createElement("span");
+      let content = document.createElement("span");
       if (elt.hasAttribute("data-empty")) {
         if (elt.getAttribute("type") == "correction-altered") {
           content.innerHTML = " (p.c.) "
@@ -62,7 +73,7 @@
 </svg>
 
 <div class="container">
-  {% if part != 'front' %}
+  {% if parttype == 'textpart' %}
   <div id="controls">
     <div id="editing">
       <ul>
@@ -89,16 +100,19 @@
     </div>
     {% endif %}
   </div>
-  <div>{% if prev %}<a href="{{prev}}" class="btn btn-secondary">previous</a> {% endif %}{% if next %}<a href="{{next}}" class="btn btn-secondary">next</a> {% endif %}{% if part != 'front' %}<a href="titlepage" class="btn btn-secondary">introduction</a>{% endif %}</div>
+  <div>{% if prev %}<a href="{{prev}}" class="btn btn-secondary">previous</a> {% endif %}{% if next %}<a href="{{next}}" class="btn btn-secondary">next</a> {% endif %}{% if part != start %}<a href="{{start}}" class="btn btn-secondary">introduction</a>{% endif %}</div>
   <div id="tei">{% autoescape off %}{{ text }}{% endautoescape %}</div>
   <div style="display:none">
     {% autoescape off %}{{ bibliography }}{% endautoescape %}
   </div>
-  <div>{% if prev %}<a href="{{prev}}" class="btn btn-secondary">previous</a> {% endif %}{% if next %}<a href="{{next}}" class="btn btn-secondary">next</a> {% endif %}{% if part != 'front' %}<a href="titlepage" class="btn btn-secondary">introduction</a>{% endif %}</div>
+  <div id="toc">
+    {% autoescape off %}{{ toc }}{% endautoescape %}
+  </div>
+  <div>{% if prev %}<a href="{{prev}}" class="btn btn-secondary">previous</a> {% endif %}{% if next %}<a href="{{next}}" class="btn btn-secondary">next</a> {% endif %}{% if part != start %}<a href="{{start}}" class="btn btn-secondary">introduction</a>{% endif %}</div>
+  <div id="toc"></div>
 </div>
 <script type="text/javascript">
   c.els = els;
-  c.els.push("egXML");
   if (document.registerElement) {
     c.registerAll(c.els);
   } else {
@@ -114,10 +128,9 @@
         }
       }
     });
-    var morph = new morphlibrary(document);
-    morph.activate("lat");
     var main = document.getElementById("{{part}}");
     app.loadData(main);
     app.doSection($(main));
+    new Alpheios.Embedded({clientId:"DLL-viewer",enabledSelector:"tei-div[type=textpart]"}).activate();
 </script>
 {% endblock %}

@@ -3,6 +3,7 @@ import re
 import requests
 import os
 import json
+import objectpath
 from django.conf import settings
 
 DIR = os.path.dirname(os.path.abspath(__file__))
@@ -27,11 +28,14 @@ def process_edition(edition):
             toc = requests.get(url)
             edition.sections = toc.text
             edition.save()
-            toc = json.loads(toc.text)
-            for part in toc['item']:
-                with open(edition.file(part['id']), 'w', encoding="utf-8") as f:
-                    r = requests.get("%sapps/CTXQ/ce/LDLT/%s/d/%s/i/%s" % (settings.EXIST_URL, edition.org, filename, part['id']))
+            toc = objectpath.Tree(json.loads(toc.text))
+            for part in toc.execute('$..item.ref'):
+                with open(edition.file(part['target'][1:]), 'w', encoding="utf-8") as f:
+                    r = requests.get("%sapps/CTXQ/ce/LDLT/%s/d/%s/i/%s" % (settings.EXIST_URL, edition.org, filename, part['target'][1:]))
                     f.write(r.text)
+            with open(edition.file('toc'), 'w', encoding="utf-8") as f:
+                r = requests.get("%sapps/CTXQ/ce/LDLT/%s/d/%s/i/%s" % (settings.EXIST_URL, edition.org, filename, 'toc'))
+                f.write(r.text)
         else:
             raise ValueError("Could not save source to the database. Status code: %s." % (r.status_code))
     else:
