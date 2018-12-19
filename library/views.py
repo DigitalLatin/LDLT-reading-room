@@ -37,9 +37,9 @@ def edition(request, id, part=None):
                 next = sections.execute("$..item[%s]" % str(i+1))["ref"]["target"][1:]
             parttype = sections.execute("$..item[%s]" % str(i))["ref"]["n"]
         else:
-            part = sections.execute("item[0]")["ref"]["target"][1:]
-            parttype = sections.execute("item[0]")["ref"]["n"]
-            next = sections.execute("item[1]")["ref"]["target"][1:]
+            part = sections.execute("$..item[0]")["ref"]["target"][1:]
+            parttype = sections.execute("$..item[0]")["ref"]["n"]
+            next = sections.execute("$..item[1]")["ref"]["target"][1:]
         with open(edition.file(part), encoding="utf-8") as f:
             text = f.read()
         with open(edition.file('bibliography'), encoding="utf-8") as f:
