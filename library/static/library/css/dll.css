@@ -23,7 +23,7 @@ div#toc {
 	position: fixed;
 	top: 15em;
 	right: 1em;
-	width: 250px;
+	width: 20%;
 }
 div#toc tei-head {
 	font-size: larger;
