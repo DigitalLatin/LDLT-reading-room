@@ -32,3 +32,7 @@ div#toc tei-head {
 .btn {
 	border-color: silver;
 }
+
+.anchor {
+	padding-top: 40px;
+}
