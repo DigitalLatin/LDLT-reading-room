@@ -32,3 +32,9 @@ div#toc tei-head {
 .btn {
 	border-color: silver;
 }
+:target::before {
+  content: "";
+  display: block;
+  height: 77px; /* fixed header height*/
+  margin: -77px 0 0; /* negative fixed header height */
+}
