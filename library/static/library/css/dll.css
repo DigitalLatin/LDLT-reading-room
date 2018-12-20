@@ -33,6 +33,10 @@ div#toc tei-head {
 	border-color: silver;
 }
 
-.anchor {
-	padding-top: 40px;
+
+:target::before {
+  content: "";
+  display: block;
+  height: 77px; /* fixed header height*/
+  margin: -77px 0 0; /* negative fixed header height */
 }
