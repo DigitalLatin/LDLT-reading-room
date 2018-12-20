@@ -2,8 +2,8 @@ from django.shortcuts import render
 from django.shortcuts import redirect
 from django.http import HttpResponse
 from .models import Edition
+from .utilities import find_items
 import json
-import objectpath
 import os
 import re
 import requests
@@ -20,26 +20,25 @@ def edition(request, id, part=None):
     try:
         edition = Edition.objects.get(identifier=id)
         # URL like /CTXQ/ce/<collection>/d/<document_id>/i/<node_id>
-        sections = objectpath.Tree(json.loads(edition.sections))
+        sections = list(find_items(json.loads(edition.sections)))
         found = prev = next = None
-        start = sections.execute("$..item[0].ref.target")[1:]
+        start = sections[0]["ref"]["target"][1:]
         if part:
             i = 0
-            for section in sections.execute("$..item"):
+            for section in sections:
                 if section["ref"]["target"][1:] == part:
                     found = True
-                    print("Found %s at index %s" % (part, i))
                 if not found:
                     i = i + 1
             if i > 0:
-                prev = sections.execute("$..item[%s]" % str(i-1))["ref"]["target"][1:]
-            if i < sections.execute("len($..item)") - 1:
-                next = sections.execute("$..item[%s]" % str(i+1))["ref"]["target"][1:]
-            parttype = sections.execute("$..item[%s]" % str(i))["ref"]["n"]
+                prev = sections[i-1]["ref"]["target"][1:]
+            if i < len(sections) - 1:
+                next = sections[i+1]["ref"]["target"][1:]
+            parttype = sections[i]["ref"]["n"]
         else:
-            part = sections.execute("$..item[0]")["ref"]["target"][1:]
-            parttype = sections.execute("$..item[0]")["ref"]["n"]
-            next = sections.execute("$..item[1]")["ref"]["target"][1:]
+            part = sections[0]["ref"]["target"][1:]
+            parttype = sections[0]["ref"]["n"]
+            next = sections[1]["ref"]["target"][1:]
         with open(edition.file(part), encoding="utf-8") as f:
             text = f.read()
         with open(edition.file('bibliography'), encoding="utf-8") as f:

@@ -3,7 +3,6 @@ import re
 import requests
 import os
 import json
-import objectpath
 from django.conf import settings
 
 DIR = os.path.dirname(os.path.abspath(__file__))
@@ -28,10 +27,11 @@ def process_edition(edition):
             toc = requests.get(url)
             edition.sections = toc.text
             edition.save()
-            toc = objectpath.Tree(json.loads(toc.text))
-            for part in toc.execute('$..item.ref'):
-                with open(edition.file(part['target'][1:]), 'w', encoding="utf-8") as f:
-                    r = requests.get("%sapps/CTXQ/ce/LDLT/%s/d/%s/i/%s" % (settings.EXIST_URL, edition.org, filename, part['target'][1:]))
+            toc = find_items(json.loads(toc.text))
+            for part in toc:
+                print(part)
+                with open(edition.file(part['ref']['target'][1:]), 'w', encoding="utf-8") as f:
+                    r = requests.get("%sapps/CTXQ/ce/LDLT/%s/d/%s/i/%s" % (settings.EXIST_URL, edition.org, filename, part['ref']['target'][1:]))
                     f.write(r.text)
             with open(edition.file('toc'), 'w', encoding="utf-8") as f:
                 r = requests.get("%sapps/CTXQ/ce/LDLT/%s/d/%s/i/%s" % (settings.EXIST_URL, edition.org, filename, 'toc'))
@@ -40,3 +40,10 @@ def process_edition(edition):
             raise ValueError("Could not save source to the database. Status code: %s." % (r.status_code))
     else:
         raise ValueError("Could not retrieve source from %s" % edition.source)
+
+def find_items(l):
+    for i in l["item"]:
+        yield i
+        if "list" in i:
+            for j in find_items(i["list"]):
+                yield j
