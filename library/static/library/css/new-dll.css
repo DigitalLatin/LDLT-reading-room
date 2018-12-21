@@ -1,0 +1,214 @@
+/*****************
+Normalize
+******************/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-margin-before: 0;
+  -webkit-margin-after: 0;
+  -webkit-margin-start: 0px;
+  -webkit-margin-end: 0px;
+  -webkit-padding-start: 0px;
+}
+
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+/*****************
+General
+******************/
+
+body {
+  padding-top: 50px;
+}
+
+nav.navbar {
+  height: 77px;
+  background-color: #005cb9;
+}
+div.jumbotron {
+  background-color: #fff;
+  padding: 4rem 1rem;
+}
+div.container {
+  width: 100%;
+}
+
+div#navbar {
+  padding-top: 23px;
+}
+
+/* Div for content on the home page. */
+div#maintext {
+  margin-top: 80px;
+  margin-right:auto;
+  margin-left: auto;
+  width: 800px;
+  font-family: 'Lato', sans-serif;
+}
+
+div#maintext-content {
+  padding-top: 25px;
+}
+
+div#tei {
+  padding-top: 2rem;
+  width: 82%;
+}
+div#toc {
+  font-size:larger;
+  margin-left: 1em;
+  text-indent: -1em;
+}
+
+div#toc tei-head {
+  font-size: larger;
+  font-weight: bold;
+}
+
+.btn {
+  border-color: silver;
+}
+
+/*  Make anchor text display after nav bar. */
+:target::before {
+  content: "";
+  display: block;
+  height: 77px; /* fixed header height*/
+  margin: -77px 0 0; /* negative fixed header height */
+}
+
+/*****************
+Typography
+******************/
+h1 {
+  font-size: 3rem;
+  line-height: 3.6rem;
+  color: #A33701;
+  font-weight: 400;
+  font-family: "Lato", sans-serif;
+}
+
+h2 {
+  font-size: 2.8rem;
+  line-height: 3.4rem;
+  color: #315375;
+}
+
+h3 {
+  font-size: 2rem;
+  line-height: 2.4rem;
+  color: #005cb9;
+}
+
+h4 {
+  font-size: 1.5rem;
+  line-height: 1.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #535B62;
+}
+
+p {
+  font-weight: normal;
+  line-height: 1.5rem;
+}
+
+em {
+  font-style: italic;
+}
+
+strong {
+  font-weight: 700;
+}
+
+ul {
+  list-style:square;
+  list-style-position:inside;
+}
+
+li {
+  margin-left: 20px;
+  line-height: 1.5rem;
+}
+
+/*****************
+Classes for maintext div
+******************/
+#maintext h1 {
+  text-align: center;
+}
+
+#maintext h2 {
+  font-style: italic;
+  font-weight: 100;
+  text-align: center;
+  font-size: 1.8rem;
+  color: #b7b7b7;
+}
+
+#maintext h3 {
+  font-size: 1.5rem;
+  margin-top: 40px;
+}
+
+#maintext p {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+#maintext img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
