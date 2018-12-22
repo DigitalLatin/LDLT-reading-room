@@ -1,40 +1,120 @@
-
+/*****************
+General
+******************/
 body {
-	padding-top: 50px;
+  padding-top: 50px;
 }
+
 nav.navbar {
-	height: 77px;
-	background-color: #005cb9;
+  height: 77px;
+  background-color: #005cb9;
 }
 div.jumbotron {
-	background-color: #fff;
+  background-color: #fff;
   padding: 4rem 1rem;
 }
 div.container {
   width: 100%;
 }
+
 div#navbar {
-	padding-top: 23px;
+  padding-top: 23px;
 }
+
+/* Div for content on the home page. */
+div#maintext {
+  margin-top: 80px;
+  margin-right:auto;
+  margin-left: auto;
+  width: 800px;
+  font-family: 'Lato', sans-serif;
+}
+
+div#maintext-content {
+  padding-top: 25px;
+}
+
 div#tei {
-	padding-top: 2rem;
-	width: 82%;
+  padding-top: 2rem;
+  width: 82%;
 }
 div#toc {
-	font-size:larger;
-	margin-left: 1em;
-	text-indent: -1em;
+  font-size:larger;
+  margin-left: 1em;
+  text-indent: -1em;
 }
+
 div#toc tei-head {
-	font-size: larger;
-	font-weight: bold;
+  font-size: larger;
+  font-weight: bold;
 }
+
 .btn {
-	border-color: silver;
+  border-color: silver;
 }
+
+/*  Make anchor text display after nav bar. */
 :target::before {
   content: "";
   display: block;
   height: 77px; /* fixed header height*/
   margin: -77px 0 0; /* negative fixed header height */
+}
+
+/*****************
+Typography for home page.
+******************/
+
+#maintext h1 {
+  font-size: 3rem;
+  line-height: 3.6rem;
+  color: #A33701;
+  font-weight: 400;
+  font-family: "Lato", sans-serif;
+  text-align: center;
+}
+
+#maintext h2 {
+  font-style: italic;
+  font-weight: 100;
+  text-align: center;
+  font-size: 1.8rem;
+  color: #b7b7b7;
+  line-height: 3.4rem;
+}
+
+#maintext h3 {
+  font-size: 1.5rem;
+  margin-top: 40px;
+  line-height: 2.4rem;
+  color: #005cb9;
+}
+
+#maintext p {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+#maintext img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#maintext em {
+  font-style: italic;
+}
+
+#maintext strong {
+  font-weight: 700;
+}
+
+#maintext ul {
+  list-style:square;
+  list-style-position:inside;
+}
+
+#maintext li {
+  margin-left: 20px;
+  line-height: 1.5rem;
 }

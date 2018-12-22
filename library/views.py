@@ -12,6 +12,9 @@ import sys
 DIR = os.path.dirname(os.path.abspath(__file__))
 
 # Create your views here.
+def splash(request):
+    return render(request, 'splash.html')
+
 def index(request):
     editions = Edition.objects.filter(active=True)
     return render(request, 'library/index.html', {'editions': editions})

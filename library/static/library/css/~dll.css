@@ -1,0 +1,40 @@
+
+body {
+	padding-top: 50px;
+}
+nav.navbar {
+	height: 77px;
+	background-color: #005cb9;
+}
+div.jumbotron {
+	background-color: #fff;
+  padding: 4rem 1rem;
+}
+div.container {
+  width: 100%;
+}
+div#navbar {
+	padding-top: 23px;
+}
+div#tei {
+	padding-top: 2rem;
+	width: 82%;
+}
+div#toc {
+	font-size:larger;
+	margin-left: 1em;
+	text-indent: -1em;
+}
+div#toc tei-head {
+	font-size: larger;
+	font-weight: bold;
+}
+.btn {
+	border-color: silver;
+}
+:target::before {
+  content: "";
+  display: block;
+  height: 77px; /* fixed header height*/
+  margin: -77px 0 0; /* negative fixed header height */
+}
