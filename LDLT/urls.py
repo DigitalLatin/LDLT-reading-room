@@ -21,9 +21,10 @@ from django.contrib import admin
 from library import views
 
 urlpatterns = [
-    #url(r'^$', RedirectView.as_view(url='/library/', permanent=True)),
-  #url(r'^$', views.splash, name='splash', include('library.urls')),
-  url(r'^$', views.splash, name='splash'),  
-  url(r'^library/', include('library.urls')),
-    url(r'^admin/', admin.site.urls),
+        #url(r'^$', RedirectView.as_view(url='/library/', permanent=True)),
+        #url(r'^$', views.splash, name='splash', include('library.urls')),
+        url(r'^$', views.splash, name='splash'),  
+        url(r'^library/', include('library.urls')),
+        url(r'^about/', views.about, name='about'),
+        url(r'^admin/', admin.site.urls),
 ]

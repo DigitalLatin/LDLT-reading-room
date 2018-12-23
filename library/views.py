@@ -15,6 +15,9 @@ DIR = os.path.dirname(os.path.abspath(__file__))
 def splash(request):
     return render(request, 'library/splash.html')
 
+def about(request):
+    return render(request, 'library/about.html')
+
 def index(request):
     editions = Edition.objects.filter(active=True)
     return render(request, 'library/index.html', {'editions': editions})
