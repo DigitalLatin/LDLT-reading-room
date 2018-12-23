@@ -1,15 +1,19 @@
 {% extends "library/base.html" %}
 
 {% block content %}
+<div id="maintext">
 <h1>Editions</h1>
 <p>The text listed below is a sample edition. It has not been published by any of the learned societies affiliated with the LDLT. It serves only as an example of the features available in the LDLT's standard interface.</p>
+<ul>
 {% for edition in editions %}
-<p><a href="texts/{{edition.identifier}}">{{edition.title}}</a>: {{edition.description}}</p>
+<li><a href="texts/{{edition.identifier}}">{{edition.title}}</a>: {{edition.description}}</li>
 {% endfor %}
+</ul>
 <p>Scholars interested in submitting a proposal for an edition should contact the appropriate learned society for the era of the text. Each society has developed, or is developing, specific policies and procedures for reviewing submissions:</p>
 <ul>
   <li><a href="https://classicalstudies.org/publications-and-research/ldlt-scs-guidelines">SCS Procedures for Evaluation of Proposals and Submissions</a></li>
   <li><a href="https://www.medievalacademy.org/page/LDLTSubmissions">MAA Procedures for Evaluation of Proposals and Submissions</a></li>
   <li>RSA procedures (coming soon)</li>
 </ul>
+</div>
 {% endblock %}
