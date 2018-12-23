@@ -27,11 +27,11 @@ div#navbar {
 Navbar links
 ******************/
 .navbar-inverse .navbar-nav > li > a {
-  color: #A33701;
+  color: #fff;
 }
 
 .navbar-inverse .navbar-nav > li > a:focus, .navbar-inverse .navbar-nav > li > a:hover {
-  color: #fff;
+  color: #A33701;
 }
 
 /* Div for content on the home page. */
