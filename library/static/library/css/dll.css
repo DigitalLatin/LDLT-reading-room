@@ -93,6 +93,7 @@ Typography for home page.
 #maintext p {
   margin-top: 20px;
   margin-bottom: 20px;
+  font-size: 1em;
 }
 
 #maintext img {
@@ -114,7 +115,11 @@ Typography for home page.
   list-style-position:inside;
 }
 
-#maintext li {
+#maintext ul li {
+  margin-bottom: 24px;
   margin-left: 20px;
-  line-height: 1.5rem;
+  font-weight: 600;
+  font-size: 1em;
+  line-height: 1.4em;
+  font-family: "Lato", sans-serif;
 }
