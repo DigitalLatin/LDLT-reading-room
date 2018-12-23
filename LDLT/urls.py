@@ -18,10 +18,10 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 #from django.views.generic import RedirectView
-#from library import views
+from library import views
 
 urlpatterns = [
-    url(r'^$', include('library.urls')),
+    url(r'^$', views.splash, name='splash', include('library.urls')),
     url(r'^library/', include('library.urls')),
     url(r'^admin/', admin.site.urls),
 ]
