@@ -81,6 +81,7 @@ Typography for home page.
   font-size: 1.8rem;
   color: #b7b7b7;
   line-height: 3.4rem;
+  font-family: "Lato", sans-serif;
 }
 
 #maintext h3 {
@@ -88,12 +89,15 @@ Typography for home page.
   margin-top: 40px;
   line-height: 2.4rem;
   color: #005cb9;
+  font-family: "Lato", sans-serif;
 }
 
 #maintext p {
   margin-top: 20px;
   margin-bottom: 20px;
-  font-size: 1em;
+  font-size: 1.2em;
+  font-weight: 400;
+  font-family: "Lato", sans-serif;
 }
 
 #maintext img {
@@ -120,6 +124,10 @@ Typography for home page.
   margin-left: 20px;
   font-weight: 600;
   font-size: 1em;
-  line-height: 1.4em;
+  line-height: 1em;
   font-family: "Lato", sans-serif;
+}
+
+#maintext #front-links {
+  display: inline-block;
 }
