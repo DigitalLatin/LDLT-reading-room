@@ -128,6 +128,6 @@ Typography for home page.
   font-family: "Lato", sans-serif;
 }
 
-#maintext #front-links {
+#maintext .front-links {
   display: inline-block;
 }
