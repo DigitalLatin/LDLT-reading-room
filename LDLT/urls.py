@@ -20,7 +20,7 @@ from library import views
 
 urlpatterns = [
     #url(r'^$', RedirectView.as_view(url='/library/', permanent=True)),
-    url(r'^$', views.splash, name=‘splash’),
+    url(r'^$', views.splash, name='splash'),
     url(r'^library/', include('library.urls')),
     url(r'^admin/', admin.site.urls),
 ]
