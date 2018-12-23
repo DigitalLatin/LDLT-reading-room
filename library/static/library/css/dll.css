@@ -128,6 +128,11 @@ Typography for home page.
   font-family: "Lato", sans-serif;
 }
 
+#maintext .links-container {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 #maintext ul.splash-links {
   list-style-type: none;
 }
