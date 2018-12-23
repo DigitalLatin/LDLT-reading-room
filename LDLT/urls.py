@@ -12,14 +12,18 @@ Class-based views
 Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
+    
+    Old rule: url(r'^$', RedirectView.as_view(url='/library/', permanent=True)),
 """
 from django.conf.urls import include, url
 from django.contrib import admin
-from django.views.generic import RedirectView
+#from django.views.generic import RedirectView
+from library import views
 
 urlpatterns = [
     #url(r'^$', RedirectView.as_view(url='/library/', permanent=True)),
   #url(r'^$', views.splash, name='splash', include('library.urls')),
-    url(r'^$', include('library.urls')),
+  url(r'^$', views.splash, name='splash'),  
+  url(r'^library/', include('library.urls')),
     url(r'^admin/', admin.site.urls),
 ]
