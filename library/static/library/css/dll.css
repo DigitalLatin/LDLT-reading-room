@@ -9,10 +9,12 @@ nav.navbar {
   height: 77px;
   background-color: #005cb9;
 }
+
 div.jumbotron {
   background-color: #fff;
   padding: 4rem 1rem;
 }
+
 div.container {
   width: 100%;
 }
@@ -21,9 +23,20 @@ div#navbar {
   padding-top: 23px;
 }
 
+/*****************
+Navbar links
+******************/
+.navbar-inverse .navbar-nav > li > a {
+  color: #A33701;
+}
+
+.navbar-inverse .navbar-nav > li > a:focus, .navbar-inverse .navbar-nav > li > a:hover {
+  color: #fff;
+}
+
 /* Div for content on the home page. */
 div#maintext {
-  margin-top: 80px;
+  margin-top: 20px;
   margin-right:auto;
   margin-left: auto;
   width: 800px;
@@ -131,6 +144,7 @@ Typography for home page.
 #maintext ul.splash-links {
   list-style-type: none;
   text-align: center;
+  padding-top: 20px;
 }
 
 #maintext ul li.splash-links {
