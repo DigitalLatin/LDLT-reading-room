@@ -140,15 +140,3 @@ Typography for home page.
   line-height: 1em;
   font-family: "Lato", sans-serif;
 }
-
-#maintext ul.splash-links {
-  list-style-type: none;
-  text-align: center;
-  padding-top: 20px;
-}
-
-#maintext ul li.splash-links {
-  display:inline;
-  margin-right: 20%;
-  font-size: 1.5em;
-}
